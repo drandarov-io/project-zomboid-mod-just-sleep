@@ -1,0 +1,1 @@
+rootProject.name = "project-zomboid-mod-just-sleep"

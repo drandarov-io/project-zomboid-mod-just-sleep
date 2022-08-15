@@ -1,0 +1,7 @@
+name=Just Sleep
+id=just_sleep
+modversion=1.0.0
+pzversion=41+
+poster=just_sleep.png
+description=Intended for simplified MP sleep. Sleep regardless of pain, tiredness and panic. Also disables automatically waking up.
+url=https://github.com/drandarov-io/project-zomboid-mod-just-sleep
