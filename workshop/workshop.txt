@@ -1,0 +1,11 @@
+version=1.0
+title=Just Sleep
+description=[h1]Informations:[/h1]
+description=
+description=Intended for simplified MP sleep when having "SleepNeeded" enabled. Sleep [b]regardless of pain, tiredness, panic and time since last slept/b]. Also [b]disables automatically waking up in MP[/b].
+description=
+description=[h1]Links:[/h1]
+description=
+description=Source: https://github.com/drandarov-io/project-zomboid-mod-just-sleep
+tags=sleep;multiplayer;pain;stress;panic;tiredness
+visibility=public
