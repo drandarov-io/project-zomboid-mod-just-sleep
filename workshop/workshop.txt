@@ -1,8 +1,9 @@
 version=1.0
+id=2849442345
 title=Just Sleep
 description=[h1]Informations:[/h1]
 description=
-description=Intended for simplified MP sleep when having "SleepNeeded" enabled. Sleep [b]regardless of pain, tiredness, panic and time since last slept/b]. Also [b]disables automatically waking up in MP[/b].
+description=Intended for simplified MP sleep when having "SleepNeeded" enabled. Sleep [b]regardless of pain, tiredness, panic and time since last slept/b]. Also [b]in Multiplayer: disables automatically waking up so that you can all wake up together[/b].
 description=
 description=[h1]Links:[/h1]
 description=
