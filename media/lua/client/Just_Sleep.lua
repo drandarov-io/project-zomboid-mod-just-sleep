@@ -1,12 +1,11 @@
 local originalSleepOption = ISWorldObjectContextMenu.doSleepOption
 
-ISWorldObjectContextMenu.doSleepOption = function(context, bed, player, playerObj)
+function ISWorldObjectContextMenu.doSleepOption(context, bed, player, playerObj)
 	-- Avoid player sleeping inside a car from the context menu, new radial menu does that now
 	if(playerObj:getVehicle() ~= nil) then return end
 	if(bed and bed:getSquare():getRoom() ~= playerObj:getSquare():getRoom()) then return end
     local text = getText(bed and "ContextMenu_Sleep" or "ContextMenu_SleepOnGround")
     local sleepOption = context:addOption(text, bed, ISWorldObjectContextMenu.onSleep, player);
-    local tooltipText = nil
     -- Not tired enough
     -- MOD CHANGE START --
     --local sleepNeeded = not isClient() or getServerOptions():getBoolean("SleepNeeded")
@@ -51,11 +50,7 @@ ISWorldObjectContextMenu.doSleepOption = function(context, bed, player, playerOb
         local bedType = bed:getProperties():Val("BedType") or "averageBed";
         local bedTypeXln = getTextOrNull("Tooltip_BedType_" .. bedType)
         if bedTypeXln then
-            if tooltipText then
-                tooltipText = tooltipText .. " <BR> " .. getText("Tooltip_BedType", bedTypeXln)
-            else
-                tooltipText = getText("Tooltip_BedType", bedTypeXln)
-            end
+            tooltipText = getText("Tooltip_BedType", bedTypeXln)
         end
     end
 
@@ -98,6 +93,7 @@ function ISWorldObjectContextMenu.onSleepWalkToComplete(player, bed)
     playerObj:setBedType(bedType);
     local modal = nil;
     local sleepFor = ZombRand(playerObj:getStats():getFatigue() * 10, playerObj:getStats():getFatigue() * 13) + 1;
+
     if bedType == "goodBed" then
         sleepFor = sleepFor -1;
     end
@@ -145,3 +141,20 @@ function ISWorldObjectContextMenu.onSleepWalkToComplete(player, bed)
         save(true)
     end
 end
+
+
+function fatigueReduction()
+    -- By how much additional Percentage Points the fatigue will be reduced every 10 in-game minutes asleep
+
+    local fatigueReductionValue = sandboxOptions.fatigueReduction / 100
+    for playerIndex = 0, getNumActivePlayers() - 1 do
+        local player = getSpecificPlayer(playerIndex)
+
+        if player:isAsleep() then
+            player:getStats():setFatigue(player:getStats():getFatigue() - fatigueReductionValue)
+        end
+    end
+end
+
+--if sandboxOptions.enableFatigueReduction:
+--    Events.EveryTenMinutes.Add(additionalFatigueReduction)
